@@ -1,0 +1,44 @@
+form {
+  padding-left: 100px;
+}
+
+h1 {
+  color: #000;
+  padding-left: 98px;
+}
+
+h1,
+.header {
+  font-size: 60px;
+}
+
+h3.current-day {
+  padding-top: 13px;
+}
+.container {
+  background-color: #eaf6f6;
+  border: 5px solid #f76b8a;
+  border-radius: 30px;
+  font-family: "Audiowide", cursive;
+  margin: 50px 50px;
+  margin-right: 40px;
+  padding: 50px;
+}
+
+.row .weather {
+  padding: 45px 50px 0 105px;
+}
+.card-body {
+  color: #fcfefe;
+  border: 5px solid #66bfbf;
+}
+.card-text,
+.card-title {
+  color: #f76b8a;
+}
+.fas {
+  color: #66bfbf;
+}
+.fa-bolt {
+  color: #f76b8a;
+}
