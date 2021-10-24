@@ -37,6 +37,8 @@ function handleEvent(event) {
 
 function displayWeatherForecast(response) {
   document.querySelector("h1").innerHTML = response.data.name;
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -57,8 +59,8 @@ function displayWeatherForecast(response) {
   let localOffset = d.getTimezoneOffset();
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
-  console.log(response.data.timezone);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
+  console.log(response.data);
 }
 
 let enterCityForm = document.querySelector("#enter-city-form");

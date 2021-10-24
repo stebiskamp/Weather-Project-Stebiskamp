@@ -29,7 +29,9 @@ h3.current-day {
   margin-bottom: 15px;
   padding: 50px;
 }
-
+.description {
+  text-transform: capitalize;
+}
 .row .weather {
   padding: 45px 50px 0 105px;
 }
