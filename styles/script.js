@@ -9,7 +9,7 @@ function formattedDate(date) {
     "Saturday",
   ];
   let currentDay = days[date.getDay()];
-  let currentHour = date.getHours() - 2;
+  let currentHour = date.getHours();
   let currentMinute = date.getMinutes();
 
   if (currentHour < 10) {
@@ -58,9 +58,8 @@ function displayWeatherForecast(response) {
   let localTime = d.getTime();
   let localOffset = d.getTimezoneOffset();
   let utc = localTime + localOffset;
-  let nDate = new Date(utc + 1000 * response.data.timezone);
+  let nDate = new Date(utc + 1000 * response.data.timezone - 7200000);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
-  console.log(response.data);
 }
 
 let enterCityForm = document.querySelector("#enter-city-form");
