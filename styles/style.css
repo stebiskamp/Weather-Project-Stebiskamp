@@ -6,6 +6,11 @@ h1 {
   color: #000;
   padding-left: 98px;
 }
+img {
+  width: 35px;
+  height: auto;
+}
+
 footer {
   font-family: "Audiowide", cursive;
   margin-left: 65px;
@@ -33,7 +38,7 @@ h3.current-day {
   text-transform: capitalize;
 }
 .row .weather {
-  padding: 45px 50px 0 105px;
+  padding: 20px 50px 0 105px;
 }
 .card-body {
   color: #fcfefe;
