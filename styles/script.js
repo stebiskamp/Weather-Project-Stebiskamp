@@ -23,10 +23,6 @@ function formattedDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
-let now = new Date();
-let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = formattedDate(now);
-
 function search(city) {
   let apiKey = "a3dbe35b1709ef749ca9620ec001b6b8";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -56,6 +52,13 @@ function displayWeatherForecast(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+  let d = new Date();
+  let localTime = d.getTime();
+  let localOffset = d.getTimezoneOffset() * 6000;
+  let utc = localTime + localOffset;
+  let nDate = new Date(utc + 1000 * response.data.timezone);
+  console.log(nDate);
+  document.querySelector("#current-date").innerHTML = formattedDate(nDate);
 }
 
 let enterCityForm = document.querySelector("#enter-city-form");
