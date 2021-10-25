@@ -37,20 +37,23 @@ function handleEvent(event) {
 
 function displayWeatherForecast(response) {
   document.querySelector("h1").innerHTML = response.data.name;
+
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  document.querySelector("#temp-max").innerHTML = Math.round(
-    response.data.main.temp_max
-  );
-  document.querySelector("#temp-min").innerHTML = Math.round(
-    response.data.main.temp_min
-  );
+
+  tempCelsius = Math.round(response.data.main.temp);
+  document.querySelector("#temperature").innerHTML = tempCelsius;
+
+  tempMax = Math.round(response.data.main.temp_max);
+  document.querySelector("#temp-max").innerHTML = `${tempMax}°C`;
+
+  tempMin = Math.round(response.data.main.temp_min);
+  document.querySelector("#temp-min").innerHTML = `${tempMin}°C`;
+
   document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   );
+
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
@@ -82,29 +85,31 @@ function showCurrentCity() {
 let buttonCurrentCity = document.querySelector("#current-city-button");
 buttonCurrentCity.addEventListener("click", showCurrentCity);
 
-function showTempCelsius(event) {
-  event.preventDefault();
-  let tempDisplay = document.querySelector("#temperature");
-  let temperature = tempDisplay.innerHTML;
-  temperature = Number(temperature);
-  tempDisplay.innerHTML = `${Math.round((temperature - 32) / 1.8)}`;
-}
-
 function showTempFahrenheit(event) {
   event.preventDefault();
-  let tempDisplay = document.querySelector("#temperature");
-  let temperature = tempDisplay.innerHTML;
-  temperature = Number(temperature);
-  tempDisplay.innerHTML = Math.round(temperature * 1.8 + 32);
+  document.querySelector("#temperature").innerHTML = Math.round(
+    tempCelsius * 1.8 + 32
+  );
+  document.querySelector("#temp-max").innerHTML = `${Math.round(
+    tempMax * 1.8 + 32
+  )}°F`;
+  document.querySelector("#temp-min").innerHTML = `${Math.round(
+    tempMin * 1.8 + 32
+  )}°F`;
 }
 
-let tempFahrenheit = document.querySelector("#fahrenheit");
-tempFahrenheit.addEventListener("click", showTempFahrenheit, { once: true });
+function showTempCelsius(event) {
+  event.preventDefault();
+  document.querySelector("#temperature").innerHTML = Math.round(tempCelsius);
+  document.querySelector("#temp-max").innerHTML = `${Math.round(tempMax)}°C`;
+  document.querySelector("#temp-min").innerHTML = `${Math.round(tempMin)}°C`;
+}
 
-let tempCelsius = document.querySelector("#celsius");
-tempCelsius.addEventListener("click", showTempCelsius, { once: true });
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", showTempFahrenheit);
 
-search("Berlin");
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showTempCelsius);
 
 let icons = {
   "01d": { name: "fas fa-sun" },
@@ -151,3 +156,9 @@ function showIcon(icon) {
     mainIcon.setAttribute("class", iconElement);
   }
 }
+
+let tempCelsius = null;
+let tempMax = null;
+let tempMin = null;
+
+search("Berlin");
