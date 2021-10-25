@@ -57,8 +57,10 @@ function displayWeatherForecast(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+
   let iconName = response.data.weather[0].icon;
   showIcon(iconName);
+
   let d = new Date();
   let localTime = d.getTime();
   let localOffset = d.getTimezoneOffset();
@@ -66,9 +68,6 @@ function displayWeatherForecast(response) {
   let nDate = new Date(utc + 1000 * response.data.timezone - 7200000);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
 }
-
-let enterCityForm = document.querySelector("#enter-city-form");
-enterCityForm.addEventListener("submit", handleEvent);
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
@@ -87,6 +86,8 @@ buttonCurrentCity.addEventListener("click", showCurrentCity);
 
 function showTempFahrenheit(event) {
   event.preventDefault();
+  fahrenheit.classList.add("active");
+  celsius.classList.remove("active");
   document.querySelector("#temperature").innerHTML = Math.round(
     tempCelsius * 1.8 + 32
   );
@@ -100,10 +101,15 @@ function showTempFahrenheit(event) {
 
 function showTempCelsius(event) {
   event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
   document.querySelector("#temperature").innerHTML = Math.round(tempCelsius);
   document.querySelector("#temp-max").innerHTML = `${Math.round(tempMax)}°C`;
   document.querySelector("#temp-min").innerHTML = `${Math.round(tempMin)}°C`;
 }
+
+let enterCityForm = document.querySelector("#enter-city-form");
+enterCityForm.addEventListener("submit", handleEvent);
 
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", showTempFahrenheit);

@@ -54,3 +54,13 @@ h3.current-day {
 .fa-bolt {
   color: #f76b8a;
 }
+.units {
+  color: #66bfbf;
+  text-decoration: none;
+}
+
+.units.active {
+  text-decoration: none;
+  color: #000;
+  cursor: default;
+}
