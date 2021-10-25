@@ -54,13 +54,8 @@ function displayWeatherForecast(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  let icon = document.querySelector("#icon");
-  icon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  icon.setAttribute("alt", response.data.weather[0].main);
-
+  let iconName = response.data.weather[0].icon;
+  showIcon(iconName);
   let d = new Date();
   let localTime = d.getTime();
   let localOffset = d.getTimezoneOffset();
@@ -110,3 +105,49 @@ let tempCelsius = document.querySelector("#celsius");
 tempCelsius.addEventListener("click", showTempCelsius, { once: true });
 
 search("Berlin");
+
+let icons = {
+  "01d": { name: "fas fa-sun" },
+
+  "02d": { name: "fas fa-cloud-sun" },
+
+  "01n": { name: "fas fa-moon" },
+
+  "02n": { name: "fas fa-cloud-moon" },
+
+  "03d": { name: "fas fa-cloud" },
+
+  "04d": { name: "fas fa-cloud" },
+
+  "03n": { name: "fas fa-cloud" },
+
+  "04n": { name: "fas fa-cloud" },
+
+  "09d": { name: "fas fa-cloud-showers-heavy" },
+
+  "09n": { name: "fas fa-cloud-showers-heavy" },
+
+  "10n": { name: "fas fa-cloud-sun-rain" },
+
+  "10d": { name: "fas fa-cloud-moon-rain" },
+
+  "11d": { name: "fas-fa-bolt" },
+
+  "11n": { name: "fas-fa-bolt" },
+
+  "13d": { name: "fas fa-snowman" },
+
+  "13n": { name: "fas fa-snowman" },
+
+  "50d": { name: "fas fa-smog" },
+
+  "50n": { name: "fas fa-smog" },
+};
+
+function showIcon(icon) {
+  if (icons[icon] !== undefined) {
+    let iconElement = icons[icon].name;
+    let mainIcon = document.querySelector("#main-icon");
+    mainIcon.setAttribute("class", iconElement);
+  }
+}
