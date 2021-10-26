@@ -1,3 +1,15 @@
+function search(city) {
+  let apiKey = "a3dbe35b1709ef749ca9620ec001b6b8";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayWeatherForecast);
+}
+function handleEvent(event) {
+  event.preventDefault();
+  let city = document.querySelector("#enter-city").value;
+  search(city);
+}
+
 function formattedDate(date) {
   let days = [
     "Sunday",
@@ -21,18 +33,6 @@ function formattedDate(date) {
   }
 
   return `${currentDay} ${currentHour}:${currentMinute}`;
-}
-
-function search(city) {
-  let apiKey = "a3dbe35b1709ef749ca9620ec001b6b8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(displayWeatherForecast);
-}
-function handleEvent(event) {
-  event.preventDefault();
-  let city = document.querySelector("#enter-city").value;
-  search(city);
 }
 
 function displayWeatherForecast(response) {
@@ -63,9 +63,10 @@ function displayWeatherForecast(response) {
 
   let d = new Date();
   let localTime = d.getTime();
-  let localOffset = d.getTimezoneOffset();
+  let localOffset = d.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
-  let nDate = new Date(utc + 1000 * response.data.timezone - 7200000);
+  let nDate = new Date(utc + 1000 * response.data.timezone);
+  console.log(nDate);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
 }
 
@@ -80,9 +81,6 @@ function showPosition(position) {
 function showCurrentCity() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
-
-let buttonCurrentCity = document.querySelector("#current-city-button");
-buttonCurrentCity.addEventListener("click", showCurrentCity);
 
 function showTempFahrenheit(event) {
   event.preventDefault();
@@ -107,15 +105,6 @@ function showTempCelsius(event) {
   document.querySelector("#temp-max").innerHTML = `${Math.round(tempMax)}°C`;
   document.querySelector("#temp-min").innerHTML = `${Math.round(tempMin)}°C`;
 }
-
-let enterCityForm = document.querySelector("#enter-city-form");
-enterCityForm.addEventListener("submit", handleEvent);
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", showTempFahrenheit);
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showTempCelsius);
 
 let icons = {
   "01d": { name: "fas fa-sun" },
@@ -162,6 +151,18 @@ function showIcon(icon) {
     mainIcon.setAttribute("class", iconElement);
   }
 }
+
+let buttonCurrentCity = document.querySelector("#current-city-button");
+buttonCurrentCity.addEventListener("click", showCurrentCity);
+
+let enterCityForm = document.querySelector("#enter-city-form");
+enterCityForm.addEventListener("submit", handleEvent);
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", showTempFahrenheit);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showTempCelsius);
 
 let tempCelsius = null;
 let tempMax = null;
