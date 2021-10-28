@@ -1,3 +1,7 @@
+body {
+  text-align: center;
+}
+
 form {
   padding-left: 100px;
 }
@@ -13,16 +17,15 @@ img {
 
 footer {
   font-family: "Audiowide", cursive;
-  margin-left: 65px;
-  padding-bottom: 30px;
 }
 h1,
 .header {
   font-size: 60px;
+  padding-top: 15px;
 }
 
 h3.current-day {
-  padding-top: 13px;
+  padding-top: 25px;
 }
 .container {
   background-color: #eaf6f6;
@@ -38,7 +41,7 @@ h3.current-day {
   text-transform: capitalize;
 }
 .row .weather {
-  padding: 20px 50px 0 105px;
+  padding: 40px 50px 0 50px;
 }
 .card-body {
   color: #fcfefe;

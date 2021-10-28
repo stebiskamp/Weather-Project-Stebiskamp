@@ -35,6 +35,28 @@ function formattedDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
+function displayWeatherForecastFiveDays() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row row-cols-5 weather">`;
+  let daysForecast = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  daysForecast.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+    <div class="card">
+    <img class="card-img-top" />
+    <div class="card-body">
+    <h5 class="card-title">${day}</h5>
+    <i class="fas fa-sun"></i>
+    <p class="card-text">24 / 14 °C</p>
+    </div>
+    </div>
+    </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeatherForecast(response) {
   document.querySelector("h1").innerHTML = response.data.name;
 
@@ -169,3 +191,4 @@ let tempMax = null;
 let tempMin = null;
 
 search("Berlin");
+displayWeatherForecastFiveDays();
