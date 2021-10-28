@@ -67,3 +67,7 @@ h3.current-day {
   color: #000;
   cursor: default;
 }
+.weather-app-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+}

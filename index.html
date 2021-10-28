@@ -25,90 +25,91 @@
     ></script>
   </head>
   <body>
-    <div class="container">
-      <form id="enter-city-form">
+    <div class="weather-app-wrapper">
+      <div class="container">
+        <form id="enter-city-form">
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter a city name"
+                  autofocus
+                  id="enter-city"
+                />
+              </div>
+            </div>
+            <div class="col-2">
+              <button
+                type="submit"
+                class="btn btn-dark search w-100"
+                id="search-button"
+              >
+                Search
+              </button>
+            </div>
+            <div class="col-2" id="current-location">
+              <button
+                type="submit"
+                class="btn btn-dark w-100"
+                id="current-city-button"
+              >
+                Current city
+              </button>
+            </div>
+          </div>
+        </form>
         <div class="row">
           <div class="col-6">
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter a city name"
-                autofocus
-                id="enter-city"
-              />
+            <h1 class="header" id="city"></h1>
+          </div>
+          <div class="col-6">
+            <!--Nested rows within a column-->
+            <div class="row">
+              <div class="col-12">
+                <h3 class="current-day">
+                  <span id="current-date"></span>h /
+                  <span class="description" id="description"></span>
+                  <i class="" id="main-icon"></i>
+                </h3>
+              </div>
             </div>
-          </div>
-          <div class="col-2">
-            <button
-              type="submit"
-              class="btn btn-dark search w-100"
-              id="search-button"
-            >
-              Search
-            </button>
-          </div>
-          <div class="col-2" id="current-location">
-            <button
-              type="submit"
-              class="btn btn-dark w-100"
-              id="current-city-button"
-            >
-              Current city
-            </button>
-          </div>
-        </div>
-      </form>
-      <div class="row">
-        <div class="col-6">
-          <h1 class="header" id="city"></h1>
-        </div>
-        <div class="col-6">
-          <!--Nested rows within a column-->
-          <div class="row">
-            <div class="col-12">
-              <h3 class="current-day">
-                <span id="current-date"></span>h /
-                <span class="description" id="description"></span>
-                <i class="" id="main-icon"></i>
-              </h3>
+            <div class="row">
+              <div class="col-12">
+                <h3>
+                  Currently <span id="temperature"></span>
+                  <a href="#" id="celsius" class="active units">°C</a>
+                  /<a href="#" id="fahrenheit" class="units"> °F</a>
+                </h3>
+              </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-12">
               <h3>
-                Currently <span id="temperature"></span>
-                <a href="#" id="celsius" class="active units">°C</a>
-                /<a href="#" id="fahrenheit" class="units"> °F</a>
+                <span id="temp-max"></span> max / <span id="temp-min"></span>
+                min
+              </h3>
+            </div>
+            <div class="col-12">
+              <h3>
+                Humidity: <span id="humidity"></span>% / Wind:
+                <span id="wind"></span>
+                km/h
               </h3>
             </div>
           </div>
-          <div class="col-12">
-            <h3>
-              <span id="temp-max"></span> max / <span id="temp-min"></span>
-              min
-            </h3>
-          </div>
-          <div class="col-12">
-            <h3>
-              Humidity: <span id="humidity"></span>% / Wind:
-              <span id="wind"></span>
-              km/h
-            </h3>
-          </div>
-        </div>
-        <div id="weather-forecast"></div>
+          <div id="weather-forecast"></div>
         </div>
       </div>
-       <footer>
-      <a
-        href="https://github.com/stebiskamp/Weather-Project-Stebiskamp"
-        target="_blank"
-      >
-        Open-source coded</a
-      >
-      by Stephanie Biskamp
-    </footer>
+      <footer>
+        <a
+          href="https://github.com/stebiskamp/Weather-Project-Stebiskamp"
+          target="_blank"
+        >
+          Open-source coded</a
+        >
+        by Stephanie Biskamp
+      </footer>
     </div>
   </body>
   <script src="styles/script.js"></script>
