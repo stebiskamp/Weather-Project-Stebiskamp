@@ -35,7 +35,13 @@ function formattedDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
-function displayWeatherForecastFiveDays() {
+function getForecast5Days(coordinates) {
+  let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherForecastFiveDays);
+}
+
+function displayWeatherForecastFiveDays(response) {
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row row-cols-5 weather">`;
   let daysForecast = ["Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -90,6 +96,8 @@ function displayWeatherForecast(response) {
   let nDate = new Date(utc + 1000 * response.data.timezone);
   console.log(nDate);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
+
+  getForecast5Days(response.data.coord);
 }
 
 function showPosition(position) {
@@ -191,4 +199,3 @@ let tempMax = null;
 let tempMin = null;
 
 search("Berlin");
-displayWeatherForecastFiveDays();
