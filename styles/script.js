@@ -161,9 +161,9 @@ let icons = {
 
   "10d": { name: "fas fa-cloud-moon-rain" },
 
-  "11d": { name: "fas-fa-bolt" },
+  "11d": { name: "fas fa-bolt" },
 
-  "11n": { name: "fas-fa-bolt" },
+  "11n": { name: "fas fa-bolt" },
 
   "13d": { name: "fas fa-snowman" },
 
