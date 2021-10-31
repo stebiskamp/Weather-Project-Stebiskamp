@@ -62,7 +62,9 @@ function displayWeatherForecastFiveDays(response) {
     <img class="card-img-top" />
     <div class="card-body">
     <h5 class="card-title">${formattedForecastDay(forecastDay.dt)}</h5>
-    <i class="" id="forecast-icon"></i>
+    <i class="${showForecastIcon(
+      forecastDay.weather[0].icon
+    )}" id="forecast-icon"></i>
     <p class="card-text"><span>${Math.round(
       forecastDay.temp.max
     )} </span> / <span>${Math.round(forecastDay.temp.min)} </span> °C</p>
@@ -148,46 +150,46 @@ function showTempCelsius(event) {
 }
 
 let icons = {
-  "01d": { name: "fas fa-sun" },
+  "01d": "fas fa-sun",
 
-  "02d": { name: "fas fa-cloud-sun" },
+  "02d": "fas fa-cloud-sun",
 
-  "01n": { name: "fas fa-moon" },
+  "01n": "fas fa-moon",
 
-  "02n": { name: "fas fa-cloud-moon" },
+  "02n": "fas fa-cloud-moon",
 
-  "03d": { name: "fas fa-cloud" },
+  "03d": "fas fa-cloud",
 
-  "04d": { name: "fas fa-cloud" },
+  "04d": "fas fa-cloud",
 
-  "03n": { name: "fas fa-cloud" },
+  "03n": "fas fa-cloud",
 
-  "04n": { name: "fas fa-cloud" },
+  "04n": "fas fa-cloud",
 
-  "09d": { name: "fas fa-cloud-showers-heavy" },
+  "09d": "fas fa-cloud-showers-heavy",
 
-  "09n": { name: "fas fa-cloud-showers-heavy" },
+  "09n": "fas fa-cloud-showers-heavy",
 
-  "10n": { name: "fas fa-cloud-sun-rain" },
+  "10n": "fas fa-cloud-sun-rain",
 
-  "10d": { name: "fas fa-cloud-moon-rain" },
+  "10d": "fas fa-cloud-moon-rain",
 
-  "11d": { name: "fas fa-bolt" },
+  "11d": "fas fa-bolt",
 
-  "11n": { name: "fas fa-bolt" },
+  "11n": "fas fa-bolt",
 
-  "13d": { name: "fas fa-snowman" },
+  "13d": "fas fa-snowman",
 
-  "13n": { name: "fas fa-snowman" },
+  "13n": "fas fa-snowman",
 
-  "50d": { name: "fas fa-smog" },
+  "50d": "fas fa-smog",
 
-  "50n": { name: "fas fa-smog" },
+  "50n": "fas fa-smog",
 };
 
 function showIcon(icon) {
   if (icons[icon] !== undefined) {
-    let iconElement = icons[icon].name;
+    let iconElement = icons[icon];
     let mainIcon = document.querySelector("#main-icon");
     mainIcon.setAttribute("class", iconElement);
   }
@@ -195,9 +197,7 @@ function showIcon(icon) {
 
 function showForecastIcon(icon) {
   if (icons[icon] !== undefined) {
-    let iconForecastElement = icons[icon].name;
-    let forecastIcon = document.querySelector("#forecast-icon");
-    forecastIcon.setAttribute("class", iconForecastElement);
+    return icons[icon];
   }
 }
 
