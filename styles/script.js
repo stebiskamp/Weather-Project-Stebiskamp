@@ -125,30 +125,6 @@ function showCurrentCity() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function showTempFahrenheit(event) {
-  event.preventDefault();
-  fahrenheit.classList.add("active");
-  celsius.classList.remove("active");
-  document.querySelector("#temperature").innerHTML = Math.round(
-    tempCelsius * 1.8 + 32
-  );
-  document.querySelector("#temp-max").innerHTML = `${Math.round(
-    tempMax * 1.8 + 32
-  )}°F`;
-  document.querySelector("#temp-min").innerHTML = `${Math.round(
-    tempMin * 1.8 + 32
-  )}°F`;
-}
-
-function showTempCelsius(event) {
-  event.preventDefault();
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-  document.querySelector("#temperature").innerHTML = Math.round(tempCelsius);
-  document.querySelector("#temp-max").innerHTML = `${Math.round(tempMax)}°C`;
-  document.querySelector("#temp-min").innerHTML = `${Math.round(tempMin)}°C`;
-}
-
 let icons = {
   "01d": "fas fa-sun",
 
@@ -206,15 +182,5 @@ buttonCurrentCity.addEventListener("click", showCurrentCity);
 
 let enterCityForm = document.querySelector("#enter-city-form");
 enterCityForm.addEventListener("submit", handleEvent);
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", showTempFahrenheit);
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showTempCelsius);
-
-let tempCelsius = null;
-let tempMax = null;
-let tempMin = null;
 
 search("Berlin");
