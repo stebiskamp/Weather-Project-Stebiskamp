@@ -35,6 +35,14 @@ function formattedDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
+function formattedForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function getForecast5Days(coordinates) {
   let apiKey = "53f3bc1f5d348c44be3e3754c7185573";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
@@ -42,22 +50,26 @@ function getForecast5Days(coordinates) {
 }
 
 function displayWeatherForecastFiveDays(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row row-cols-5 weather">`;
-  let daysForecast = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  daysForecast.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
     <div class="card">
     <img class="card-img-top" />
     <div class="card-body">
-    <h5 class="card-title">${day}</h5>
-    <i class="fas fa-sun"></i>
-    <p class="card-text">24 / 14 °C</p>
+    <h5 class="card-title">${formattedForecastDay(forecastDay.dt)}</h5>
+    <i class="" id="forecast-icon"></i>
+    <p class="card-text"><span>${Math.round(
+      forecastDay.temp.max
+    )} </span> / <span>${Math.round(forecastDay.temp.min)} </span> °C</p>
     </div>
     </div>
     </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -94,7 +106,6 @@ function displayWeatherForecast(response) {
   let localOffset = d.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
-  console.log(nDate);
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
 
   getForecast5Days(response.data.coord);
@@ -179,6 +190,14 @@ function showIcon(icon) {
     let iconElement = icons[icon].name;
     let mainIcon = document.querySelector("#main-icon");
     mainIcon.setAttribute("class", iconElement);
+  }
+}
+
+function showForecastIcon(icon) {
+  if (icons[icon] !== undefined) {
+    let iconForecastElement = icons[icon].name;
+    let forecastIcon = document.querySelector("#forecast-icon");
+    forecastIcon.setAttribute("class", iconForecastElement);
   }
 }
 
