@@ -146,9 +146,9 @@ let icons = {
 
   "09n": "fas fa-cloud-showers-heavy",
 
-  "10n": "fas fa-cloud-sun-rain",
+  "10d": "fas fa-cloud-sun-rain",
 
-  "10d": "fas fa-cloud-moon-rain",
+  "10n": "fas fa-cloud-moon-rain",
 
   "11d": "fas fa-bolt",
 
