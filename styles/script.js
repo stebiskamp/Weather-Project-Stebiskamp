@@ -108,6 +108,7 @@ function displayWeatherForecast(response) {
   let localOffset = d.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
+
   document.querySelector("#current-date").innerHTML = formattedDate(nDate);
 
   getForecast5Days(response.data.coord);
