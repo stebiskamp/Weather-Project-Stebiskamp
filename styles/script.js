@@ -87,10 +87,10 @@ function displayWeatherForecast(response) {
   document.querySelector("#temperature").innerHTML = tempCelsius;
 
   tempMax = Math.round(response.data.main.temp_max);
-  document.querySelector("#temp-max").innerHTML = `${tempMax}°C`;
+  document.querySelector("#temp-max").innerHTML = `${tempMax} °C`;
 
   tempMin = Math.round(response.data.main.temp_min);
-  document.querySelector("#temp-min").innerHTML = `${tempMin}°C`;
+  document.querySelector("#temp-min").innerHTML = `${tempMin} °C`;
 
   document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
