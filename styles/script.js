@@ -11,16 +11,26 @@ function handleEvent(event) {
 }
 
 function formattedDate(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  let months = [
+    "Jan",
+    "Fev",
+    "Mar",
+    "Apr",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
+
   let currentDay = days[date.getDay()];
+  let currentDate = date.getDate();
+  let currentMonth = months[date.getMonth()];
+  let currentYear = date.getFullYear();
   let currentHour = date.getHours();
   let currentMinute = date.getMinutes();
 
@@ -32,7 +42,7 @@ function formattedDate(date) {
     currentMinute = `0${currentMinute}`;
   }
 
-  return `${currentDay} ${currentHour}:${currentMinute}`;
+  return `${currentDay}, ${currentDate} ${currentMonth} ${currentYear} / ${currentHour}:${currentMinute}`;
 }
 
 function formattedForecastDay(timestamp) {

@@ -62,3 +62,7 @@ h3.current-day {
   max-width: 1100px;
   margin: 40px auto;
 }
+
+.searchbar {
+  padding-right: 45px;
+}
