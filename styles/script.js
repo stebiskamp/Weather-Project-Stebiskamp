@@ -18,6 +18,7 @@ function formattedDate(date) {
     "Fev",
     "Mar",
     "Apr",
+    "Mai",
     "Jun",
     "Jul",
     "Aug",
